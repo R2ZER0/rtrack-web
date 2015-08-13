@@ -1,0 +1,25 @@
+{
+  "name": "rtrack-web",
+  "version": "0.0.0",
+  "homepage": "https://github.com/R2ZER0/rtrack-web",
+  "authors": [
+    "Rikki Guy <git@rikkiguy.me.uk>"
+  ],
+  "description": "A web app for rtrack",
+  "keywords": [
+    "rtrack",
+    "track",
+    "fun"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "pickadate": "~3.5.6"
+  }
+}
