@@ -1,5 +1,5 @@
 /* Set up map */
-var map = L.map('map');
+var map = L.map('super-epic-map');
 var marker = null;
 
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {

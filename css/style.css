@@ -3,6 +3,21 @@ body {
     margin: 0;
 }
 
-html, body, #map {
+html, body {
     height: 100%;
+}
+
+#super-epic-map {
+    height: 100%;
+}
+
+#picker-form {
+    position: absolute;
+    left: 50px;
+    top: 10px;
+    z-index: 99;
+}
+
+#wrapper {
+    /* position: relative; */
 }

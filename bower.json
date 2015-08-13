@@ -20,6 +20,6 @@
     "tests"
   ],
   "dependencies": {
-    "pickadate": "~3.5.6"
+    "eonasdan-bootstrap-datetimepicker": "~4.15.35"
   }
 }
