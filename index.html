@@ -5,64 +5,12 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
-    <style>
-      body {
-        padding: 0;
-        margin: 0;
-      }
-      html, body, #map {
-        height: 100%;
-      }
-    </style>
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <div id="map"></div>  
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
-    <script>
-      /* Set up map */
-      var map = L.map('map');
-      var marker = null;
-      
-      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-          '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-          'Imagery © <a href="http://mapbox.com">Mapbox</a>'
-      }).addTo(map);
-      
-      map.setZoom(16);
-    
-      /* Get location */
-      var locationUrl = "http://gallium.r2zer0.net:5000/whereisrikki";
-      
-      function updateLocation() {
-        $.getJSON(locationUrl, function(loc) {
-        
-          console.log("Success!");
-          console.log(loc);
-          
-          var lat = parseFloat(loc.latitude);
-          var lng = parseFloat(loc.longitude);
-      
-          /* Set up map */
-          map.setView([lat, lng]);
-          
-          if(marker !== null) {
-            //marker.removeFrom(map);
-            marker = null;
-          }
-          
-          marker = L.marker([lat, lng]).addTo(map);
-          
-        
-        }).fail(function () {
-          console.log("Error :(");
-        });
-      }
-      
-      updateLocation();
-      window.setInterval(updateLocation, 60000);
-    </script>
+    <script src="js/rtrack.js"></script>
   </body>
 </html>
