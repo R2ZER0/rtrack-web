@@ -1,6 +1,6 @@
 /* Set up map */
 var map = L.map('super-epic-map');
-var marker = null;
+var markers = [];
 
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     maxZoom: 18,
@@ -11,33 +11,49 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 
 map.setZoom(16);
 
-/* Get location */
-var locationUrl = "http://gallium.r2zer0.net:5000/whereisrikki";
-
-function updateLocation() {
-$.getJSON(locationUrl, function(loc) {
-
-    console.log("Success!");
-    console.log(loc);
-    
-    var lat = parseFloat(loc.latitude);
-    var lng = parseFloat(loc.longitude);
-
-    /* Set up map */
-    map.setView([lat, lng]);
-    
-    if(marker !== null) {
-    //marker.removeFrom(map);
-    marker = null;
+function clear_points() {
+    for(var i = 0; i < markers.length; i++) {
+        markers[i].removeFrom(map);
     }
-    
-    marker = L.marker([lat, lng]).addTo(map);
-    
-
-}).fail(function () {
-    console.log("Error :(");
-});
+    markers = [];
 }
 
-updateLocation();
-window.setInterval(updateLocation, 60000);
+function plot_points(points) {    
+    for(var i = 0; i < points.length; i++) {
+        markers.push(
+            L.marker(points[i]).addTo(map)
+        );   
+    }
+}
+
+/* Get location */
+var locationUrl = "http://gallium.r2zer0.net:5000/whereisrikki";
+var historyUrl  = "http://gallium.r2zer0.net:5000/history";
+
+function show_latest() {
+    $.getJSON(locationUrl, function(loc) {
+        var lat = parseFloat(loc.latitude);
+        var lng = parseFloat(loc.longitude);
+        
+        map.setView([lat, lng]);
+        
+        plot_points([[lat, lng]]);
+    });
+}
+
+function show_history() {
+    clear_points();
+    $.getJSON(historyUrl, function(data) {
+        var hist = data.history;
+        points = [];
+        for(var i = 0; i < hist.length; i++) {
+            var lat = parseFloat(hist[i].latitude);
+            var lng = parseFloat(hist[i].longitude);
+            points.push([lat, lng]);
+        }
+        plot_points(points);
+    });
+    
+}
+
+show_latest();
