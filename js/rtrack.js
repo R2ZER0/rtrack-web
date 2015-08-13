@@ -43,7 +43,13 @@ function show_latest() {
 
 function show_history() {
     clear_points();
-    $.getJSON(historyUrl, function(data) {
+    
+    var from = new Date($('#picker-from-input').val).value;
+    var to = new Date($('#picker-to-input').val).value;
+    
+    var url = historyUrl + "/" + from + "/" + to;
+    
+    $.getJSON(url, function(data) {
         var hist = data.history;
         points = [];
         for(var i = 0; i < hist.length; i++) {
