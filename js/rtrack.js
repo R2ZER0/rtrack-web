@@ -42,10 +42,10 @@ function show_latest() {
 }
 
 function show_history() {
-    clear_points();
+    /* clear_points(); */
     
-    var from = new Date($('#picker-from-input').val).value;
-    var to = new Date($('#picker-to-input').val).value;
+    var from = new Date($('#picker-from-input').val()).getTime();
+    var to = new Date($('#picker-to-input').val()).getTime();
     
     var url = historyUrl + "/" + from + "/" + to;
     
