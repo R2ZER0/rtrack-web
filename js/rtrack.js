@@ -27,7 +27,7 @@ function plot_points(points) {
 }
 
 /* Get location */
-var locationUrl = "http://gallium.r2zer0.net:5000/whereisrikki";
+var locationUrl = "http://gallium.r2zer0.net:5000/";
 var historyUrl  = "http://gallium.r2zer0.net:5000/history";
 
 function show_latest() {
